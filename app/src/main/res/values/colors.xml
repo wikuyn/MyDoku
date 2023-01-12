@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#3FDEAE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="toolbar">#FDFCFC</color>
+    <color name="red">#ED4C4C</color>
+    <color name="button_dark">#0D1238</color>
+    <color name="text_gray">#61697D</color>
+    <color name="edt_background_color">#F3F6FF</color>
+    <color name="shimmer_color">#C2C2C2</color>
+
+
+    <color name="bensin_category">#454A55</color>
+    <color name="makanan_category">#FF985E</color>
+    <color name="internet_category">#6065D7</color>
+    <color name="traveling_category">#1CD69D</color>
+    <color name="belanja_category">#F4719A</color>
+    <color name="pemasukan_category">#5EFF39</color>
+
+</resources>

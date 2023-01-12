@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">My Doku</string>
+    <string name="continues">Continue</string>
+    <string name="hello">Hello Welcome</string>
+    <string name="username">Username</string>
+    <string name="totalbalance">Total Uang</string>
+    <string name="rp">Rp. </string>
+    <string name="pemasukan">Pemasukan</string>
+    <string name="pengeluaran">Pengeluaran</string>
+    <string name="data_null">You dont have any transaction</string>
+    <string name="pilih_katagori">Choose category</string>
+    <string name="transaction_name">Transaction Name</string>
+    <string name="singin_with_your_pass">Signin with your username</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="large_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum nulla urna, et sodales lorem elementum a. Aliquam ac nisi quis eros molestie efficitur. Mauris nec consectetur neque, aliquam pulvinar ante. Aliquam volutpat at lectus nec congue. Nullam feugiat dui quis nisi efficitur, ornare ornare mauris porttitor. Nullam sed nunc eu libero condimentum malesuada. Phasellus consectetur a dolor quis facilisis. Vivamus ultrices rhoncus sapien. Vestibulum in felis mattis, commodo nisl at, imperdiet sem. Suspendisse convallis massa tempor facilisis egestas. Aliquam erat volutpat.
+
+Phasellus venenatis aliquet nisi. Phasellus rutrum dolor eu enim posuere, non feugiat turpis porttitor. Curabitur vel aliquet nibh, sit amet maximus turpis. Mauris vitae leo quis erat tempor ultricies. Pellentesque vitae suscipit dolor. Praesent efficitur accumsan erat, ac mattis ipsum tempus vitae. Sed maximus placerat pretium. Cras sed iaculis mauris. Ut orci dui, facilisis nec elementum sed, scelerisque quis erat. Nunc fringilla dapibus neque, a interdum ipsum pulvinar ut. Donec mi massa, finibus at tempus hendrerit, commodo a augue.
+
+Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras eget turpis at lectus tincidunt placerat eget et sem. Cras tristique risus tellus, eget ornare ex eleifend dictum. Morbi felis tortor, facilisis faucibus malesuada ut, accumsan eget leo. Nulla vitae lacus nisl. Sed et magna vel urna suscipit fermentum id ut augue. Aenean faucibus pretium erat id tempor. Nullam egestas sed mauris sit amet efficitur. Etiam in lacus elit. Vivamus tempor sed magna vel dignissim. Integer accumsan libero lectus, at ornare sapien vestibulum id. In odio leo, finibus ut euismod ac, posuere ac urna.
+
+Curabitur id finibus nisl. Sed lorem libero, tristique in lectus sit amet, pretium rhoncus libero. Proin consequat dictum ipsum, vel finibus lacus maximus at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed lacinia diam a massa ullamcorper, elementum congue eros consequat. Curabitur a sem eu nisi eleifend dapibus vitae sed urna. Mauris ac dui sit amet metus fermentum varius. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla venenatis sem finibus viverra interdum. Donec luctus, lacus at ornare mollis, arcu ante luctus dolor, nec bibendum urna ante id nulla. Etiam vel pellentesque ligula. Pellentesque eu lobortis ante, hendrerit volutpat nunc. Ut venenatis tincidunt tortor, vel dictum urna tincidunt a. Phasellus et sem ante. Sed elit nisi, rutrum vel urna quis, aliquet suscipit orci. Integer tristique congue ligula id elementum.
+
+Fusce viverra mauris ut tempus finibus. Etiam commodo ipsum velit, eu accumsan felis tristique laoreet. Sed non suscipit neque. Praesent quis porta tortor. Vestibulum sollicitudin tempus libero eget hendrerit. Nam diam sem, commodo nec nibh volutpat, eleifend ullamcorper felis. Aliquam sit amet eros ac nibh fermentum porttitor. Proin rhoncus magna turpis. Aenean tristique ante ac libero fermentum, ac mattis risus viverra. Quisque vitae diam velit. Nunc commodo sagittis leo vel maximus.
+    </string>
+    <string name="categori_bensin">Bensin</string>
+    <string name="categori_makan">Makan</string>
+    <string name="categori_internet">Internet</string>
+    <string name="categori_traveling">Traveling</string>
+    <string name="categori_belanja">Belanja</string>
+</resources>
