@@ -30,7 +30,17 @@ class OffersFragment : Fragment() {
         viewmodel = ViewModelProvider(this)[OffersViewModel::class.java]
 
         mBinding.loading.startShimmer()
+        getArticle()
 
+        mBinding.refresh.setOnRefreshListener {
+            mBinding.loading.startShimmer()
+            getArticle()
+        }
+
+        return mBinding.root
+    }
+
+    private fun getArticle() {
         viewmodel.getListArticle().observe(viewLifecycleOwner) {
             var adapter = NewArticelAdapter(requireContext(),it.articles)
             mBinding.rvNewsArticle.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
@@ -38,8 +48,5 @@ class OffersFragment : Fragment() {
             mBinding.loading.stopShimmer()
             mBinding.loading.visibility = View.GONE
         }
-
-
-        return mBinding.root
     }
 }
