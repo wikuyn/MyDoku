@@ -53,6 +53,7 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
             categoryIcon = data!!.icon
             categoryType = data!!.type
             textMoney = data!!.nominal
+            date = data!!.date
 
             binding.edtTransactionName.setText(data!!.transactionName)
             val formatRupiah = FormatToRupiah.convertRupiahToDecimal(textMoney)
@@ -60,7 +61,7 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
             binding.edtMoney.setText(formatRupiah)
             binding.tvCategory.text = categoryName
             binding.iconCategory.setImageResource(categoryIcon)
-            binding.tvDate.text = formatter.format(data!!.date)
+            binding.tvDate.text = formatter.format(date)
         }else{
             setDefaultCategory()
         }
@@ -175,11 +176,11 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayMonth: Int) {
         calendar.set(year, month, dayMonth)
-        setFormatDate(calendar.timeInMillis)
+        date = calendar.time
+        setFormatDate(date)
     }
 
-    private fun setFormatDate(timeInMillis: Long) {
-        date = Date(timeInMillis)
-        binding.tvDate.text = formatter.format(date)
+    private fun setFormatDate(s: Date) {
+        binding.tvDate.text = formatter.format(s)
     }
 }

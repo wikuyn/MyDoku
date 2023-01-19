@@ -71,14 +71,6 @@ class HomeFragment : Fragment() {
             mBinding.tvIncome.text = "Rp. "+FormatToRupiah.convertRupiahToDecimal(income)
         }
 
-        homeViewModel.getRelation().observe(viewLifecycleOwner){
-            Log.e(TAG, "onCreateView: "+it )
-        }
-
-        homeViewModel.getUserLoginDetail(username.toString()).observe(viewLifecycleOwner) {
-
-        }
-
         mBinding.cardView3.setOnClickListener {
             val intent = Intent(context, AddTransactionActivity::class.java)
             startActivity(intent)

@@ -46,6 +46,7 @@ class OffersFragment : Fragment() {
             mBinding.rvNewsArticle.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
             mBinding.rvNewsArticle.adapter = adapter
             mBinding.loading.stopShimmer()
+            mBinding.refresh.isRefreshing = false
             mBinding.loading.visibility = View.GONE
         }
     }
