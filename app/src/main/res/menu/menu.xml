@@ -6,10 +6,12 @@
     <item android:id="@+id/menuWallet"
         android:title="Wallet"
         android:icon="@drawable/ic_wallet"/>
+    <item android:id="@+id/menuAddTransaction"
+        android:title="Add Transaction"/>
     <item android:id="@+id/menuOffers"
-        android:title="Home"
+        android:title="News"
         android:icon="@drawable/ic_offers"/>
     <item android:id="@+id/menuAlert"
-        android:title="Home"
+        android:title="Alert"
         android:icon="@drawable/ic_stop"/>
 </menu>

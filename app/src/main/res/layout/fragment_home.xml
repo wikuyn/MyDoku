@@ -210,43 +210,19 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_13sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Cards"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintTop_toBottomOf="@id/lin"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_13sdp"
-                android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView7" />
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView3"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="@dimen/_6sdp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="@color/purple_500"
+                android:layout_height="@dimen/_114sdp"
                 android:layout_marginStart="@dimen/_13sdp"
                 android:layout_marginEnd="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:cardCornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/lin" >
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView8"
@@ -277,6 +253,7 @@
                 android:id="@+id/rvLastTrasaction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />

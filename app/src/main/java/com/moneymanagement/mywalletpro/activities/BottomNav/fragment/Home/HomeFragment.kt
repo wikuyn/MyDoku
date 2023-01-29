@@ -8,14 +8,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.moneymanagement.mywalletpro.Model.Relation.TransaksiWithUserRef
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.Adapter.LastTransactionAdapter
 import com.moneymanagement.mywalletpro.Model.Transaksi
 import com.moneymanagement.mywalletpro.Utils.FormatToRupiah
+import com.moneymanagement.mywalletpro.Utils.SharedPreference
 import com.moneymanagement.mywalletpro.activities.AddTransaction.AddTransactionActivity
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.viewmodel.HomeViewModel
 import com.moneymanagement.mywalletpro.databinding.FragmentHomeBinding
@@ -25,6 +28,7 @@ class HomeFragment : Fragment() {
     private var transaksi: ArrayList<Transaksi> = ArrayList()
     private lateinit var mBinding: FragmentHomeBinding
     private lateinit var adapter: LastTransactionAdapter
+    private lateinit var homeViewModel: HomeViewModel
     //var balance: Double = 0.0
     private var income: Long = 0
     private var spending: Long = 0
@@ -37,10 +41,10 @@ class HomeFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentHomeBinding.inflate(inflater,container,false)
-        val homeViewModel= ViewModelProvider(this)[HomeViewModel::class.java]
-        val username = homeViewModel.getLoginUsernameSharedPref()
+        homeViewModel= ViewModelProvider(this)[HomeViewModel::class.java]
 
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -52,9 +56,14 @@ class HomeFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val transactionList: List<Transaksi> = adapter.transaksi
-                homeViewModel.deleteTransaction(transactionList[position])
+                if (direction == ItemTouchHelper.LEFT){
+                    homeViewModel.deleteTransaction(transactionList[position])
+                }else{
+                    val pindah = Intent(context, AddTransactionActivity::class.java)
+                    pindah.putExtra("DETAIL_DATA", transactionList[position])
+                    startActivity(pindah)
+                }
             }
-
         }).attachToRecyclerView(mBinding.rvLastTrasaction)
 
         homeViewModel.getBalance().observe(viewLifecycleOwner){
@@ -70,23 +79,21 @@ class HomeFragment : Fragment() {
             income = it.sum()
             mBinding.tvIncome.text = "Rp. "+FormatToRupiah.convertRupiahToDecimal(income)
         }
+        return mBinding.root
+    }
 
-        mBinding.cardView3.setOnClickListener {
-            val intent = Intent(context, AddTransactionActivity::class.java)
-            startActivity(intent)
-        }
-
-        homeViewModel.getAllTransaction().observe(viewLifecycleOwner) {
-            if (it.size.equals(null) || it.size > 0){
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.getTransaksiOfUser(SharedPreference.getUserIdLogin(requireContext())).observe(viewLifecycleOwner){
+            if (it.transaksi.equals(null) || it.transaksi.isEmpty()){
+                mBinding.tvDataNull.isVisible = true
+            }else{
                 mBinding.tvDataNull.isVisible = false
-                adapter = LastTransactionAdapter(requireContext(),it)
+                adapter = LastTransactionAdapter(requireContext(),it.transaksi)
                 mBinding.rvLastTrasaction.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,true)
                 mBinding.rvLastTrasaction.adapter = adapter
-            }else{
-                mBinding.tvDataNull.isVisible = true
             }
         }
-        return mBinding.root
     }
 
 }

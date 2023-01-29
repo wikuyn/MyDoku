@@ -39,7 +39,7 @@ class SharedPreference {
         }
 
         fun getUserIdLogin(context: Context): Int{
-            return getSharedPreference(context).getInt("USER_ID",90000)
+            return getSharedPreference(context).getInt("USER_ID",1)
         }
     }
 }

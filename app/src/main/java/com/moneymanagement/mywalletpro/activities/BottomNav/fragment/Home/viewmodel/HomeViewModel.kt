@@ -8,9 +8,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.moneymanagement.mywalletpro.AppDatabase
+import com.moneymanagement.mywalletpro.Model.Relation.TransaksiWithUserRef
+import com.moneymanagement.mywalletpro.Model.Relation.UserWithTransaksi
 import com.moneymanagement.mywalletpro.Model.Transaksi
 import com.moneymanagement.mywalletpro.Model.User
-import com.moneymanagement.mywalletpro.Model.UserWithTransaction
 import com.moneymanagement.mywalletpro.Utils.SharedPreference
 import java.util.concurrent.Executors
 
@@ -18,8 +19,15 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     private val db = AppDatabase.getDatabaseInstance(application.applicationContext)
     private val executors = Executors.newSingleThreadExecutor()
     private val handler = Handler(Looper.getMainLooper())
-    var dataSpending: Long = 0
+    private var listTransaksiWithUser: MutableLiveData<UserWithTransaksi> = MutableLiveData()
     var hasl: Long = 0
+
+    fun getTransaksiOfUser(userId: Int): LiveData<UserWithTransaksi>{
+        db.userDao().getTransaksiOfUser(userId).observeForever {
+            listTransaksiWithUser.postValue(it)
+        }
+        return listTransaksiWithUser
+    }
 
     fun getBalance(): LiveData<Long>{
         var spending: Long = 0
@@ -52,10 +60,6 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     //Get transaction value from room database
     fun getAllTransaction(): LiveData<List<Transaksi>>{
         return db.userDao().getAllTransaction()
-    }
-
-    fun getRelation(): LiveData<List<UserWithTransaction>>{
-        return db.userDao().getUsersWithPlaylists()
     }
 
     //get spending money observeforever untuk observe data terus menerus tanpa lifecyclerowner
@@ -92,6 +96,7 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
 
     fun deleteTransaction(transaction: Transaksi){
         executors.execute {
+            db.userDao().deleteTransaksiOfUser(transaction.transactionId)
             db.userDao().deleteTransaction(transaction)
         }
     }
@@ -99,14 +104,5 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     //Get username user login from sharedpreference
     fun getLoginUsernameSharedPref(): String? {
         return SharedPreference.getUsernameLogin(getApplication<Application>().applicationContext)
-    }
-
-    fun getUserLoginDetail(username : String):LiveData<User>{
-        return db.userDao().getUserLogin(username)
-    }
-
-    //Set user login id to sharedpreference
-    fun setUserLoginId(userId: Int){
-        return SharedPreference.setUserIdLogin(getApplication<Application>().applicationContext, userId)
     }
 }

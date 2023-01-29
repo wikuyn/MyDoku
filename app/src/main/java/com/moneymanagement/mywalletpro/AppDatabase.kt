@@ -5,12 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.moneymanagement.mywalletpro.Model.Relation.TransaksiWithUserRef
 import com.moneymanagement.mywalletpro.Model.Transaksi
 import com.moneymanagement.mywalletpro.Model.User
-import com.moneymanagement.mywalletpro.Model.UserWithTransaction
 import com.moneymanagement.mywalletpro.Utils.DateConverter
 
-@Database(entities = [User::class,Transaksi::class], version = 1)
+@Database(entities = [
+    User::class,
+    Transaksi::class,
+    TransaksiWithUserRef::class], version = 1)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 

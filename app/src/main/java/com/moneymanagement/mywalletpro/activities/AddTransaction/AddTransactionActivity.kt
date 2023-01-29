@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import com.moneymanagement.mywalletpro.Model.CategoryTransaction
+import com.moneymanagement.mywalletpro.Model.Relation.TransaksiWithUserRef
 import com.moneymanagement.mywalletpro.Model.Transaksi
 import com.moneymanagement.mywalletpro.R
 import com.moneymanagement.mywalletpro.Utils.DateConverter
@@ -41,6 +42,8 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
     private lateinit var date : Date
     private var data: Transaksi? = null
 
+    private lateinit var transactionId: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTransactionBinding.inflate(layoutInflater)
@@ -49,6 +52,7 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
 
         data = intent.getParcelableExtra<Transaksi>("DETAIL_DATA")
         if (data != null){
+            transactionId = data!!.transactionId
             categoryName = data!!.category.toString()
             categoryIcon = data!!.icon
             categoryType = data!!.type
@@ -135,7 +139,7 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
     private fun updateData() {
         transactionName = binding.edtTransactionName.text.toString().trim()
         val updateData = Transaksi(categoryIcon,transactionName,SharedPreference.getUserIdLogin(applicationContext)
-            , textMoney, date, categoryType,categoryName)
+            , textMoney, date, categoryType,categoryName, transactionId)
         updateData.transactionId = data?.transactionId!!
         viewmodel.updateTransaction(updateData)
         Toast.makeText(this, "${updateData.transactionId}", Toast.LENGTH_SHORT).show()
@@ -145,8 +149,12 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
     private fun saveData() {
         transactionName = binding.edtTransactionName.text.toString().trim()
         newTransaksi = Transaksi(categoryIcon,transactionName,SharedPreference.getUserIdLogin(applicationContext)
-            , textMoney, date, categoryType, categoryName)
+            , textMoney, date, categoryType, categoryName,generateTransactionId())
         viewmodel.insertNewTransaction(newTransaksi)
+
+
+        val userWithTransaksi = TransaksiWithUserRef(transactionId, SharedPreference.getUserIdLogin(applicationContext))
+        viewmodel.insertUserWithTransaksi(userWithTransaksi)
         finish()
     }
 
@@ -182,5 +190,11 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
 
     private fun setFormatDate(s: Date) {
         binding.tvDate.text = formatter.format(s)
+    }
+
+    private fun generateTransactionId(): String{
+        var currentTime = Calendar.getInstance().timeInMillis
+        transactionId = "TRS-$currentTime"
+        return transactionId
     }
 }

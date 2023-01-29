@@ -1,11 +1,14 @@
 package com.moneymanagement.mywalletpro.activities.BottomNav
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.moneymanagement.mywalletpro.R
+import com.moneymanagement.mywalletpro.activities.AddTransaction.AddTransactionActivity
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Alert.AlertFragment
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.HomeFragment
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Offers.OffersFragment
@@ -14,14 +17,24 @@ import com.moneymanagement.mywalletpro.databinding.ActivityBottomNavigationBindi
 
 class BottomNavigationActivity : AppCompatActivity() {
 
-    private var binding : ActivityBottomNavigationBinding? = null
+    private lateinit var binding : ActivityBottomNavigationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        binding!!.bottomNavigation.setOnItemSelectedListener { it ->
+        initialize()
+
+        binding.ivAdd.setOnClickListener {
+            val intent = Intent(applicationContext, AddTransactionActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun initialize() {
+        binding.bottomNavigation.setOnItemSelectedListener { it ->
             when(it.itemId){
                 R.id.menuHome ->{
                     val fragment = HomeFragment()
@@ -30,6 +43,7 @@ class BottomNavigationActivity : AppCompatActivity() {
                 }
                 R.id.menuWallet ->{
                     val fragment = WalletFragment()
+                    //loadFragment(fragment)
                     addFragment(fragment, WalletFragment::class.java.simpleName)
                     return@setOnItemSelectedListener true
                 }
@@ -48,14 +62,19 @@ class BottomNavigationActivity : AppCompatActivity() {
         }
         val homeFragment = HomeFragment()
         addFragment(homeFragment, HomeFragment::class.java.simpleName)
+    }
 
+    private fun loadFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.containers,fragment)
+        transaction.commit()
     }
 
     private fun addFragment(fragment: Fragment, tagname : String) {
-        val mFragmentManager : FragmentManager = supportFragmentManager
-        val mFragmentTransaction : FragmentTransaction = mFragmentManager.beginTransaction()
+        val mFragmentManager: FragmentManager = supportFragmentManager
+        val mFragmentTransaction: FragmentTransaction = mFragmentManager.beginTransaction()
+        val currentFragment: Fragment? = mFragmentManager.primaryNavigationFragment
 
-        val currentFragment : Fragment? = mFragmentManager.primaryNavigationFragment
         if (currentFragment != null){
             mFragmentTransaction.hide(currentFragment)
         }
@@ -63,13 +82,21 @@ class BottomNavigationActivity : AppCompatActivity() {
         var tempFragment : Fragment? = mFragmentManager.findFragmentByTag(tagname)
         if (tempFragment == null){
             tempFragment = fragment
-            mFragmentTransaction.add(R.id.containers, tempFragment, tagname)
+            mFragmentTransaction.replace(R.id.containers, tempFragment, tagname)
         }else{
             mFragmentTransaction.show(tempFragment)
         }
-
         mFragmentTransaction.setPrimaryNavigationFragment(tempFragment)
         mFragmentTransaction.setReorderingAllowed(true)
         mFragmentTransaction.commitAllowingStateLoss()
+
+        /*
+        if (fragmentInstance is WalletFragment){
+            mFragmentTransaction.replace(R.id.containers, fragment)
+            mFragmentTransaction.commit()
+        }else{
+        }
+
+         */
     }
 }

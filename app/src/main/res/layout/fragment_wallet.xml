@@ -26,14 +26,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@id/persentasepengeluaran"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/persentasepengeluaran">
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/piechart"
@@ -165,6 +164,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
         </LinearLayout>
 
         <TextView
@@ -179,8 +179,14 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/linear" />
 
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_184sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text" />
 
         <TextView
             android:id="@+id/bawah"
@@ -194,21 +200,15 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linechart" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/linechart"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_264sdp"
-            android:layout_marginStart="@dimen/_13sdp"
-            android:layout_marginEnd="@dimen/_13sdp"
-            app:layout_constraintTop_toBottomOf="@+id/text"/>
+            app:layout_constraintTop_toBottomOf="@+id/lineChart" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTransaksiTerakhir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bawah" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

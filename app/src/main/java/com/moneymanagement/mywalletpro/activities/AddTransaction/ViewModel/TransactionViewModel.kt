@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.AndroidViewModel
 import com.moneymanagement.mywalletpro.AppDatabase
+import com.moneymanagement.mywalletpro.Model.Relation.TransaksiWithUserRef
 import com.moneymanagement.mywalletpro.Model.Transaksi
 import java.util.concurrent.Executors
 
@@ -14,9 +15,15 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
     private val executors = Executors.newSingleThreadExecutor()
     private val handler = Handler(Looper.getMainLooper())
 
-    fun insertNewTransaction(transaksi: Transaksi){
-        executors.execute{
+    fun insertNewTransaction(transaksi: Transaksi) {
+        executors.execute {
             db.userDao().insertNewTransaction(transaksi)
+        }
+    }
+
+    fun insertUserWithTransaksi(transaksiWithUserRef: TransaksiWithUserRef){
+        executors.execute {
+            db.userDao().insertUserTransaksiCrossRef(transaksiWithUserRef)
         }
     }
 

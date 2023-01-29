@@ -17,5 +17,6 @@ data class Transaksi(
     val date: Date,
     val type: Int,
     val category: String?,
-    @PrimaryKey(autoGenerate = true) var transactionId : Int = 0
+    @PrimaryKey(autoGenerate = false)
+    var transactionId: String
 ): Parcelable

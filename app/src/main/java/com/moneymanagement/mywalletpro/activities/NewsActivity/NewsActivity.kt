@@ -15,10 +15,19 @@ class NewsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val urlNews = intent.getStringExtra("URL").toString()
+        if (urlNews != null) {
+            loadDetailNews(urlNews)
+        }
 
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun loadDetailNews(url: String) {
         binding.newsView.webViewClient = WebViewClient()
 
-        binding.newsView.loadUrl(urlNews)
+        binding.newsView.loadUrl(url)
         binding.newsView.settings.javaScriptEnabled = true
     }
 }
