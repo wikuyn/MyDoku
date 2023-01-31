@@ -23,19 +23,22 @@ class AlertFragment : Fragment() {
     ): View? {
         binding = FragmentAlertBinding.inflate(inflater,container,false)
         binding.download.setOnClickListener {
-
-            request.setTitle("Download File")
-            request.setDescription("Download in progress")
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-            request.setAllowedOverMetered(true)
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
-            request.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_PICTURES, "dummy.pdf")
-
-            val downloadManager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-            downloadManager.enqueue(request)
-            Toast.makeText(context,"download",Toast.LENGTH_SHORT).show()
+            downloadFile()
         }
 
         return binding.root
+    }
+
+    private fun downloadFile() {
+        request.setTitle("Download File")
+        request.setDescription("Download in progress")
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+        request.setAllowedOverMetered(true)
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
+        request.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_PICTURES, "dummy.pdf")
+
+        val downloadManager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        downloadManager.enqueue(request)
+        Toast.makeText(context,"download",Toast.LENGTH_SHORT).show()
     }
 }

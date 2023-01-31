@@ -3,23 +3,23 @@ package com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
+import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.moneymanagement.mywalletpro.Model.Relation.TransaksiWithUserRef
-import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.Adapter.LastTransactionAdapter
+import androidx.transition.AutoTransition
+import androidx.transition.Transition
 import com.moneymanagement.mywalletpro.Model.Transaksi
 import com.moneymanagement.mywalletpro.Utils.FormatToRupiah
 import com.moneymanagement.mywalletpro.Utils.SharedPreference
 import com.moneymanagement.mywalletpro.activities.AddTransaction.AddTransactionActivity
+import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.Adapter.LastTransactionAdapter
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.viewmodel.HomeViewModel
 import com.moneymanagement.mywalletpro.databinding.FragmentHomeBinding
 
@@ -78,6 +78,16 @@ class HomeFragment : Fragment() {
         homeViewModel.getIn(2).observe(viewLifecycleOwner){
             income = it.sum()
             mBinding.tvIncome.text = "Rp. "+FormatToRupiah.convertRupiahToDecimal(income)
+        }
+
+        mBinding.btnShow.setOnClickListener {
+            if (mBinding.hiddenView.isVisible){
+                TransitionManager.beginDelayedTransition(mBinding.cardView3)
+                mBinding.hiddenView.visibility = View.GONE
+            }else{
+                TransitionManager.beginDelayedTransition(mBinding.cardView3)
+                mBinding.hiddenView.visibility = View.VISIBLE
+            }
         }
         return mBinding.root
     }
