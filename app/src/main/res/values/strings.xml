@@ -29,4 +29,9 @@ Fusce viverra mauris ut tempus finibus. Etiam commodo ipsum velit, eu accumsan f
     <string name="categori_internet">Internet</string>
     <string name="categori_traveling">Traveling</string>
     <string name="categori_belanja">Belanja</string>
+    <string-array name="tipe_transaksi">
+        <item>Semua</item>
+        <item>Pengeluaran</item>
+        <item>Pemasukan</item>
+    </string-array>
 </resources>

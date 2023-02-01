@@ -19,6 +19,7 @@ import com.moneymanagement.mywalletpro.Model.Transaksi
 import com.moneymanagement.mywalletpro.Utils.FormatToRupiah
 import com.moneymanagement.mywalletpro.Utils.SharedPreference
 import com.moneymanagement.mywalletpro.activities.AddTransaction.AddTransactionActivity
+import com.moneymanagement.mywalletpro.activities.AllTransaction.AllTransactionActivity
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.Adapter.LastTransactionAdapter
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.viewmodel.HomeViewModel
 import com.moneymanagement.mywalletpro.databinding.FragmentHomeBinding
@@ -88,6 +89,10 @@ class HomeFragment : Fragment() {
                 TransitionManager.beginDelayedTransition(mBinding.cardView3)
                 mBinding.hiddenView.visibility = View.VISIBLE
             }
+        }
+
+        mBinding.btnShowAllTransaksi.setOnClickListener {
+            startActivity(Intent(context, AllTransactionActivity::class.java))
         }
         return mBinding.root
     }

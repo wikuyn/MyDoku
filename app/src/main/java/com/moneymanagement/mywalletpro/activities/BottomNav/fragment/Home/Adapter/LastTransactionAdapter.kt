@@ -40,6 +40,9 @@ class LastTransactionAdapter(val context : Context,val transaksi : List<Transaks
     }
 
     override fun getItemCount(): Int {
+        if(transaksi.size > 5){
+            return 5
+        }
         return transaksi.size
     }
 
