@@ -3,7 +3,10 @@ package com.moneymanagement.mywalletpro.activities.BottomNav
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.TooltipCompat
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -22,7 +25,7 @@ class BottomNavigationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
+        setContentView(binding.root)
 
         initialize()
 
@@ -89,14 +92,15 @@ class BottomNavigationActivity : AppCompatActivity() {
         mFragmentTransaction.setPrimaryNavigationFragment(tempFragment)
         mFragmentTransaction.setReorderingAllowed(true)
         mFragmentTransaction.commitAllowingStateLoss()
+    }
 
-        /*
-        if (fragmentInstance is WalletFragment){
-            mFragmentTransaction.replace(R.id.containers, fragment)
-            mFragmentTransaction.commit()
-        }else{
+    override fun onResume() {
+        super.onResume()
+        binding.bottomNavigation.menu.forEach {
+            val view = binding.bottomNavigation.findViewById<View>(it.itemId)
+            view.setOnLongClickListener {
+                true
+            }
         }
-
-         */
     }
 }

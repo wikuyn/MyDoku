@@ -13,6 +13,7 @@
     <string name="singin_with_your_pass">Signin with your username</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="peringatan">Pencatatan transaksi pada aplikasi ini di simpan secara local di smartphone anda, sehingga tidak perlu khawatir mengenai kebocoran data. </string>
     <string name="large_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum nulla urna, et sodales lorem elementum a. Aliquam ac nisi quis eros molestie efficitur. Mauris nec consectetur neque, aliquam pulvinar ante. Aliquam volutpat at lectus nec congue. Nullam feugiat dui quis nisi efficitur, ornare ornare mauris porttitor. Nullam sed nunc eu libero condimentum malesuada. Phasellus consectetur a dolor quis facilisis. Vivamus ultrices rhoncus sapien. Vestibulum in felis mattis, commodo nisl at, imperdiet sem. Suspendisse convallis massa tempor facilisis egestas. Aliquam erat volutpat.
 
 Phasellus venenatis aliquet nisi. Phasellus rutrum dolor eu enim posuere, non feugiat turpis porttitor. Curabitur vel aliquet nibh, sit amet maximus turpis. Mauris vitae leo quis erat tempor ultricies. Pellentesque vitae suscipit dolor. Praesent efficitur accumsan erat, ac mattis ipsum tempus vitae. Sed maximus placerat pretium. Cras sed iaculis mauris. Ut orci dui, facilisis nec elementum sed, scelerisque quis erat. Nunc fringilla dapibus neque, a interdum ipsum pulvinar ut. Donec mi massa, finibus at tempus hendrerit, commodo a augue.
