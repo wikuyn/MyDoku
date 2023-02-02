@@ -1,6 +1,7 @@
 package com.moneymanagement.mywalletpro.activities.AllTransaction.ViewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.moneymanagement.mywalletpro.AppDatabase
 import com.moneymanagement.mywalletpro.Model.Relation.UserWithTransaksi
 import com.moneymanagement.mywalletpro.Model.Transaksi
+import java.util.*
 import java.util.concurrent.Executors
 
 class AllTransactionViewModel(application: Application) : AndroidViewModel(application) {
@@ -16,9 +18,33 @@ class AllTransactionViewModel(application: Application) : AndroidViewModel(appli
     private val executors = Executors.newSingleThreadExecutor()
     private var listTransaction: MutableLiveData<List<Transaksi>> = MutableLiveData()
 
-    fun getAllTransaction(userId: Int): LiveData<List<Transaksi>>{
-        db.userDao().getTransaksiOfUser(userId).observeForever {
-            listTransaction.value = it.transaksi
+    fun getAllTransaction(): LiveData<List<Transaksi>>{
+        db.userDao().getAllTransaction().observeForever {
+            listTransaction.value = it
+        }
+        return listTransaction
+    }
+
+    fun getAllTransactionToday(date: Long):LiveData<List<Transaksi>>{
+        db.userDao().getTransaksiOfUserToday(date).observeForever {
+            listTransaction.value = it
+            for (i in it){
+                Log.e("TAG", "getAllTransactionToday: "+i.transactionName)
+            }
+        }
+        return listTransaction
+    }
+
+    fun getAllTransactionAweek():LiveData<List<Transaksi>>{
+        db.userDao().getTransaksiOfUserWeek().observeForever {
+            listTransaction.value = it
+        }
+        return listTransaction
+    }
+
+    fun getAlTransactionMonth(dateMonth: Date):LiveData<List<Transaksi>>{
+        db.userDao().getTransaksiOfUserMonth(dateMonth).observeForever {
+            listTransaction.value = it
         }
         return listTransaction
     }

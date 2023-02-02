@@ -99,13 +99,13 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        homeViewModel.getTransaksiOfUser(SharedPreference.getUserIdLogin(requireContext())).observe(viewLifecycleOwner){
-            if (it.transaksi.equals(null) || it.transaksi.isEmpty()){
+        homeViewModel.getTransaksiOfUser().observe(viewLifecycleOwner){
+            if (it.equals(null) || it.isEmpty()){
                 mBinding.tvDataNull.isVisible = true
             }else{
                 mBinding.tvDataNull.isVisible = false
-                adapter = LastTransactionAdapter(requireContext(),it.transaksi)
-                mBinding.rvLastTrasaction.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,true)
+                adapter = LastTransactionAdapter(requireContext(),it)
+                mBinding.rvLastTrasaction.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,false)
                 mBinding.rvLastTrasaction.adapter = adapter
             }
         }

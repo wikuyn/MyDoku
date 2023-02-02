@@ -14,11 +14,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d28f5834-4e32-49c4-abd5-8565e1ee6041" name="Changes" comment="Memperbaiki homefragment">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/AllTransaction/Adapter/AllTransactionAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/AllTransaction/AllTransactionActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/AllTransaction/ViewModel/AllTransactionViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_transaction.xml" afterDir="false" />
+    <list default="true" id="d28f5834-4e32-49c4-abd5-8565e1ee6041" name="Changes" comment="menambahkan activity_all_transaction.xml">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/back_selected.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -28,14 +25,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/BottomNav/fragment/Home/Adapter/LastTransactionAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/BottomNav/fragment/Home/Adapter/LastTransactionAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/UserDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/UserDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/AllTransaction/AllTransactionActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/AllTransaction/AllTransactionActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/AllTransaction/ViewModel/AllTransactionViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/AllTransaction/ViewModel/AllTransactionViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/BottomNav/fragment/Home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/BottomNav/fragment/Home/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_right_arrow.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_right_arrow.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_transaction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_category_transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_category_transaction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/BottomNav/fragment/Home/viewmodel/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moneymanagement/mywalletpro/activities/BottomNav/fragment/Home/viewmodel/HomeViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_all_transaction.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,9 +64,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Data Class" />
-        <option value="resourceFile" />
         <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -225,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675219112632</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="menambahkan activity_all_transaction.xml">
+      <created>1675229577281</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1675229577282</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -249,6 +251,7 @@
     <MESSAGE value="memperbaiki edit transaksi" />
     <MESSAGE value="swipe left for remove, swipe right for edit" />
     <MESSAGE value="Memperbaiki homefragment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Memperbaiki homefragment" />
+    <MESSAGE value="menambahkan activity_all_transaction.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="menambahkan activity_all_transaction.xml" />
   </component>
 </project>

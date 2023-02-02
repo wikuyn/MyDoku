@@ -6,15 +6,13 @@ import com.moneymanagement.mywalletpro.Model.Relation.TransaksiWithUserRef
 import com.moneymanagement.mywalletpro.Model.Relation.UserWithTransaksi
 import com.moneymanagement.mywalletpro.Model.Transaksi
 import com.moneymanagement.mywalletpro.Model.User
+import java.util.*
 
 @Dao
 interface UserDao {
 
     @Insert()
     fun createUsar(newUser : User)
-
-    @Query("SELECT *FROM `transaksi`")
-    fun getAllTransaction(): LiveData<List<Transaksi>>
 
     @Transaction
     @Query("SELECT *FROM 'user'")
@@ -52,4 +50,16 @@ interface UserDao {
 
     @Query("SELECT *FROM user WHERE userId = :userid")
     fun getTransaksiOfUser(userid: Int): LiveData<UserWithTransaksi>
+
+    @Query("SELECT *FROM transaksi ORDER BY date DESC")
+    fun getAllTransaction(): LiveData<List<Transaksi>>
+
+    @Query("SELECT *FROM transaksi WHERE date LIKE '%' || :date || '%' ORDER BY date DESC")
+    fun getTransaksiOfUserToday(date: Long): LiveData<List<Transaksi>>
+
+    @Query("SELECT *FROM transaksi WHERE CAST((date / 1000) AS INTEGER) BETWEEN strftime('%s','now','-7 days') AND strftime('%s','now')  ORDER BY date DESC")
+    fun getTransaksiOfUserWeek(): LiveData<List<Transaksi>>
+
+    @Query("SELECT *FROM transaksi WHERE date(date/1000,'unixepoch','start of month') = datetime(:dateOfMonth/1000,'unixepoch','start of month')")
+    fun getTransaksiOfUserMonth(dateOfMonth: Date): LiveData<List<Transaksi>>
 }

@@ -19,11 +19,11 @@ class HomeViewModel(application: Application): AndroidViewModel(application) {
     private val db = AppDatabase.getDatabaseInstance(application.applicationContext)
     private val executors = Executors.newSingleThreadExecutor()
     private val handler = Handler(Looper.getMainLooper())
-    private var listTransaksiWithUser: MutableLiveData<UserWithTransaksi> = MutableLiveData()
+    private var listTransaksiWithUser: MutableLiveData<List<Transaksi>> = MutableLiveData()
     var hasl: Long = 0
 
-    fun getTransaksiOfUser(userId: Int): LiveData<UserWithTransaksi>{
-        db.userDao().getTransaksiOfUser(userId).observeForever {
+    fun getTransaksiOfUser(): LiveData<List<Transaksi>>{
+        db.userDao().getAllTransaction().observeForever {
             listTransaksiWithUser.postValue(it)
         }
         return listTransaksiWithUser
