@@ -11,12 +11,12 @@ import java.util.Date
 @Parcelize
 data class Transaksi(
     val icon: Int,
-    val transactionName: String?,
+    val transactionName: String,
     val userIdTransaction: Int,
     val nominal: Long,
     val date: Date,
     val type: Int,
-    val category: String?,
+    val category: String,
     @PrimaryKey(autoGenerate = false)
     var transactionId: String
 ): Parcelable

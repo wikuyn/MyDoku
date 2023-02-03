@@ -50,6 +50,7 @@ class AllTransactionAdapter(val context: Context, val allTrasaction: List<Transa
             bindingSpending.tvSpendingName.text = allTrasaction[position].transactionName
             bindingSpending.ivIcon.setImageResource(allTrasaction[position].icon)
             bindingSpending.tvMoney.text = "Rp. "+ FormatToRupiah.convertRupiahToDecimal(allTrasaction[position].nominal)
+
             val dateFormat = SimpleDateFormat(
                 "dd/MM/yyyy"
                         + " "

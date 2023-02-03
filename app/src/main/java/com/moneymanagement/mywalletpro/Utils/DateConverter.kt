@@ -3,6 +3,7 @@ package com.moneymanagement.mywalletpro.Utils
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
+import java.text.SimpleDateFormat
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAccessor
@@ -17,5 +18,9 @@ class DateConverter {
     @TypeConverter
     fun dateToTimestamp(date: Date?): Long? {
         return date?.time?.toLong()
+    }
+
+    companion object{
+        val FORMATTER = SimpleDateFormat("yyy-MM-dd")
     }
 }

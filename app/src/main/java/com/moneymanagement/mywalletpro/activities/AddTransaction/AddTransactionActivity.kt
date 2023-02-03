@@ -142,7 +142,6 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
             , textMoney, date, categoryType,categoryName, transactionId)
         updateData.transactionId = data?.transactionId!!
         viewmodel.updateTransaction(updateData)
-        Toast.makeText(this, "${updateData.transactionId}", Toast.LENGTH_SHORT).show()
         finish()
     }
 
@@ -151,7 +150,6 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
         newTransaksi = Transaksi(categoryIcon,transactionName,SharedPreference.getUserIdLogin(applicationContext)
             , textMoney, date, categoryType, categoryName,generateTransactionId())
         viewmodel.insertNewTransaction(newTransaksi)
-
 
         val userWithTransaksi = TransaksiWithUserRef(transactionId, SharedPreference.getUserIdLogin(applicationContext))
         viewmodel.insertUserWithTransaksi(userWithTransaksi)
@@ -165,6 +163,9 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
 
         binding.tvCategory.text = categoryName
         binding.iconCategory.setImageResource(categoryIcon)
+
+        date = Calendar.getInstance().time
+        binding.tvDate.text = formatter.format(date)
     }
 
     val getData = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){

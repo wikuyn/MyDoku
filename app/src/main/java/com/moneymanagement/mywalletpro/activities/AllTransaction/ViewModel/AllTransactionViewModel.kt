@@ -25,8 +25,8 @@ class AllTransactionViewModel(application: Application) : AndroidViewModel(appli
         return listTransaction
     }
 
-    fun getAllTransactionToday(date: Long):LiveData<List<Transaksi>>{
-        db.userDao().getTransaksiOfUserToday(date).observeForever {
+    fun getAllTransactionToday(dateToday: Long):LiveData<List<Transaksi>>{
+        db.userDao().getTransaksiOfUserToday(dateToday).observeForever {
             listTransaction.value = it
             for (i in it){
                 Log.e("TAG", "getAllTransactionToday: "+i.transactionName)
@@ -42,8 +42,8 @@ class AllTransactionViewModel(application: Application) : AndroidViewModel(appli
         return listTransaction
     }
 
-    fun getAlTransactionMonth(dateMonth: Date):LiveData<List<Transaksi>>{
-        db.userDao().getTransaksiOfUserMonth(dateMonth).observeForever {
+    fun getAlTransactionMonth():LiveData<List<Transaksi>>{
+        db.userDao().getTransaksiOfUserMonth().observeForever {
             listTransaction.value = it
         }
         return listTransaction

@@ -22,6 +22,7 @@ import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.Adapte
 import com.moneymanagement.mywalletpro.activities.BottomNav.fragment.Home.viewmodel.HomeViewModel
 import com.moneymanagement.mywalletpro.databinding.ActivityAllTransactionBinding
 import java.text.SimpleDateFormat
+import java.time.ZonedDateTime
 import java.util.*
 
 class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -29,6 +30,7 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
     private lateinit var binding: ActivityAllTransactionBinding
     private lateinit var adapter: AllTransactionAdapter
     private lateinit var viewmodel: AllTransactionViewModel
+    private val formatter = SimpleDateFormat("EEE, d MMM yyyy", Locale.US)
     private var tipeKategori = arrayOf("Semua","Pengeluaran","Pemasukan")
     private lateinit var def: ColorStateList
 
@@ -124,33 +126,11 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
         }
     }
 
-    private fun getTransactionMonth() {
-        val formatter = SimpleDateFormat("MM")
-        val date = Date()
-        val currentMonth = formatter.format(date)
-        Toast.makeText(this, "$currentMonth", Toast.LENGTH_SHORT).show()
-        /*
-        viewmodel.getAlTransactionMonth().observe(this){
-            if (it.size > 0 || it.isNotEmpty()){
-                binding.rvAllTransaction.visibility = View.VISIBLE
-                adapter = AllTransactionAdapter(this,it)
-                binding.rvAllTransaction.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
-                binding.rvAllTransaction.adapter = adapter
-            }else{
-                Toast.makeText(this, "null", Toast.LENGTH_SHORT).show()
-                binding.rvAllTransaction.visibility = View.GONE
-            }
-        }
-
-         */
-
-    }
-
     private fun getTransactionToday() {
-        val dateValueAsString = System.currentTimeMillis().toString().substring(0,5)
-        Toast.makeText(this, "$dateValueAsString", Toast.LENGTH_SHORT).show()
-        val dateAsLong = dateValueAsString.toLong()
-        viewmodel.getAllTransactionToday(dateAsLong).observe(this){
+        val date: Date = Calendar.getInstance().time
+        val long: Long = date.time
+        Toast.makeText(this, "$long", Toast.LENGTH_SHORT).show()
+        viewmodel.getAllTransactionToday(long).observe(this){
             if (it.size > 0){
                 binding.rvAllTransaction.visibility = View.VISIBLE
                 adapter = AllTransactionAdapter(this,it)
@@ -167,6 +147,24 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
         val dateValueAsString = System.currentTimeMillis().toString().substring(0,6)
         val dateAsLong = dateValueAsString.toLong()
         viewmodel.getAllTransactionAweek().observe(this){
+            if (it.size > 0 || it.isNotEmpty()){
+                binding.rvAllTransaction.visibility = View.VISIBLE
+                adapter = AllTransactionAdapter(this,it)
+                binding.rvAllTransaction.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
+                binding.rvAllTransaction.adapter = adapter
+            }else{
+                Toast.makeText(this, "null", Toast.LENGTH_SHORT).show()
+                binding.rvAllTransaction.visibility = View.GONE
+            }
+        }
+    }
+
+
+    private fun getTransactionMonth() {
+        val date: Date = Calendar.getInstance().time
+        val long = date.time
+        Toast.makeText(this, "$date", Toast.LENGTH_SHORT).show()
+        viewmodel.getAlTransactionMonth().observe(this){
             if (it.size > 0 || it.isNotEmpty()){
                 binding.rvAllTransaction.visibility = View.VISIBLE
                 adapter = AllTransactionAdapter(this,it)
