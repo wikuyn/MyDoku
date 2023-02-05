@@ -52,12 +52,14 @@ class LastTransactionAdapter(val context : Context,val transaksi : List<Transaks
             bindingIncome.tvIncomeName.text = transaksi[position].transactionName
             bindingIncome.ivIcon.setImageResource(transaksi[position].icon)
             bindingIncome.tvMoney.text = "Rp. -"+FormatToRupiah.convertRupiahToDecimal(transaksi[position].nominal)
+            /*
             val dateFormat = SimpleDateFormat(
                 "dd/MM/yyyy"
                         + " "
                         + " HH:mm")
             val date = dateFormat.format(transaksi[position].date)
-            bindingIncome.tvDate.text = date.toString()
+             */
+            bindingIncome.tvDate.text = transaksi[position].dateSql
             bindingIncome.root.setOnClickListener {
                 val intent = Intent(context, AddTransactionActivity::class.java)
                 intent.putExtra("DETAIL_DATA",transaksi[position])
@@ -68,12 +70,14 @@ class LastTransactionAdapter(val context : Context,val transaksi : List<Transaks
             bindingSpending.tvSpendingName.text = transaksi[position].transactionName
             bindingSpending.ivIcon.setImageResource(transaksi[position].icon)
             bindingSpending.tvMoney.text = "Rp. "+FormatToRupiah.convertRupiahToDecimal(transaksi[position].nominal)
+            /*
             val dateFormat = SimpleDateFormat(
                 "dd/MM/yyyy"
                         + " "
                         + " HH:mm")
             val date = dateFormat.format(transaksi[position].date)
-            bindingSpending.tvDate.text = date.toString()
+             */
+            bindingSpending.tvDate.text = transaksi[position].dateSql
             bindingSpending.root.setOnClickListener {
                 val intent = Intent(context, AddTransactionActivity::class.java)
                 intent.putExtra("DETAIL_DATA",transaksi[position])

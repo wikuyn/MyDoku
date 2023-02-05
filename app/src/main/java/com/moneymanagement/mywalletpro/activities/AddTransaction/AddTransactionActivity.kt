@@ -38,8 +38,9 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
     private lateinit var transactionName: String
 
     private val calendar = Calendar.getInstance()
-    private val formatter = SimpleDateFormat("EEE, d MMM yyyy", Locale.US)
-    private lateinit var date : Date
+    private val formatter = SimpleDateFormat("dd-MM-yyyy")
+    private lateinit var date: String
+    private lateinit var realDate: Date
     private var data: Transaksi? = null
 
     private lateinit var transactionId: String
@@ -57,7 +58,7 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
             categoryIcon = data!!.icon
             categoryType = data!!.type
             textMoney = data!!.nominal
-            date = data!!.date
+            date = data!!.dateSql
 
             binding.edtTransactionName.setText(data!!.transactionName)
             val formatRupiah = FormatToRupiah.convertRupiahToDecimal(textMoney)
@@ -65,7 +66,7 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
             binding.edtMoney.setText(formatRupiah)
             binding.tvCategory.text = categoryName
             binding.iconCategory.setImageResource(categoryIcon)
-            binding.tvDate.text = formatter.format(date)
+            binding.tvDate.text = date
         }else{
             setDefaultCategory()
         }
@@ -164,8 +165,7 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
         binding.tvCategory.text = categoryName
         binding.iconCategory.setImageResource(categoryIcon)
 
-        date = Calendar.getInstance().time
-        binding.tvDate.text = formatter.format(date)
+        //date = Calendar.getInstance().time
     }
 
     val getData = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -185,11 +185,12 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayMonth: Int) {
         calendar.set(year, month, dayMonth)
-        date = calendar.time
-        setFormatDate(date)
+        realDate = calendar.time
+        setFormatDate(realDate)
     }
 
     private fun setFormatDate(s: Date) {
+        date = formatter.format(s)
         binding.tvDate.text = formatter.format(s)
     }
 

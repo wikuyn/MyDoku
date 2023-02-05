@@ -34,12 +34,13 @@ class AllTransactionAdapter(val context: Context, val allTrasaction: List<Transa
             bindingIncome.tvIncomeName.text = allTrasaction[position].transactionName
             bindingIncome.ivIcon.setImageResource(allTrasaction[position].icon)
             bindingIncome.tvMoney.text = "Rp. -"+ FormatToRupiah.convertRupiahToDecimal(allTrasaction[position].nominal)
+            /*
             val dateFormat = SimpleDateFormat(
-                "dd/MM/yyyy"
-                        + " "
-                        + " HH:mm")
+                "dd-MM-yyyy")
             val date = dateFormat.format(allTrasaction[position].date)
-            bindingIncome.tvDate.text = date.toString()
+
+             */
+            bindingIncome.tvDate.text = allTrasaction[position].dateSql
             bindingIncome.root.setOnClickListener {
                 val intent = Intent(context, AddTransactionActivity::class.java)
                 intent.putExtra("DETAIL_DATA",allTrasaction[position])
@@ -50,13 +51,13 @@ class AllTransactionAdapter(val context: Context, val allTrasaction: List<Transa
             bindingSpending.tvSpendingName.text = allTrasaction[position].transactionName
             bindingSpending.ivIcon.setImageResource(allTrasaction[position].icon)
             bindingSpending.tvMoney.text = "Rp. "+ FormatToRupiah.convertRupiahToDecimal(allTrasaction[position].nominal)
-
+            /*
             val dateFormat = SimpleDateFormat(
-                "dd/MM/yyyy"
-                        + " "
-                        + " HH:mm")
+                "dd-MM-yyyy")
             val date = dateFormat.format(allTrasaction[position].date)
-            bindingSpending.tvDate.text = date.toString()
+
+             */
+            bindingSpending.tvDate.text = allTrasaction[position].dateSql
             bindingSpending.root.setOnClickListener {
                 val intent = Intent(context, AddTransactionActivity::class.java)
                 intent.putExtra("DETAIL_DATA",allTrasaction[position])
