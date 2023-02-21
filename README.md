@@ -4,8 +4,7 @@ Aplikasi pencatat keuangan
 
 #Screenshoot
 
-![image](https://user-images.githubusercontent.com/53558289/220338257-30535d11-8aac-4c9a-ba32-b05cbf2c512f.png)
-![image](https://user-images.githubusercontent.com/53558289/220338271-bb319d23-c3e3-429a-9d35-9b84311514be.png)
-![image](https://user-images.githubusercontent.com/53558289/220338293-61379fc3-f6bd-4673-bbff-09659783f60f.png)
-![image](https://user-images.githubusercontent.com/53558289/220338308-bf419f69-bc94-4672-bf5f-96cc0dbb5486.png)
-
+![image](https://user-images.githubusercontent.com/53558289/220338479-a9da8488-80fc-47e1-a20c-cec3e69a7cf5.png)
+![image](https://user-images.githubusercontent.com/53558289/220338507-6d9f82c2-9061-4a69-949c-a5190ff4e134.png)
+![image](https://user-images.githubusercontent.com/53558289/220338527-085390dc-09c7-4e4c-9e41-1b54532c0dd3.png)
+![image](https://user-images.githubusercontent.com/53558289/220338537-5053c577-c7b7-4a8f-9343-50643e032088.png)
