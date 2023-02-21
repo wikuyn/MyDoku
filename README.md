@@ -9,4 +9,4 @@ Aplikasi pencatat keuangan
 ![image](https://user-images.githubusercontent.com/53558289/220338527-085390dc-09c7-4e4c-9e41-1b54532c0dd3.png)
 ![image](https://user-images.githubusercontent.com/53558289/220338537-5053c577-c7b7-4a8f-9343-50643e032088.png)
 
-Utilized : Kotlin, Retrofit, View Binding, Design Patter (MVVM), dan Rest API
+Utilized : Kotlin, Retrofit, View Binding, Design Patter (MVVM), MP Cart, dan Rest API
