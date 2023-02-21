@@ -19,8 +19,4 @@ class DateConverter {
     fun dateToTimestamp(date: Date?): Long? {
         return date?.time?.toLong()
     }
-
-    companion object{
-        val FORMATTER = SimpleDateFormat("yyy-MM-dd")
-    }
 }

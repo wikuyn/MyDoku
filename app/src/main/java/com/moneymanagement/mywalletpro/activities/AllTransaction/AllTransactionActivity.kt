@@ -35,8 +35,6 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
     private lateinit var adapter: AllTransactionAdapter
     private lateinit var viewmodel: AllTransactionViewModel
     private val simpleDateFormater = SimpleDateFormat("dd-MM-yyyy")
-    private val monthFormatter = SimpleDateFormat("MM")
-    private val weekFormatter = SimpleDateFormat("ww")
     private var tipeKategori = arrayOf("Semua","Pengeluaran","Pemasukan")
     private val date: Date = Calendar.getInstance().time
     private lateinit var def: ColorStateList
@@ -59,7 +57,6 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
 
         getAllTransaction()
 
-
         binding.btnBack.setOnClickListener {
             finish()
         }
@@ -71,8 +68,8 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
             R.array.tipe_transaksi,
             android.R.layout.simple_spinner_item
         ).also {
-            adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+            adapter -> adapter
+            .setDropDownViewResource(android.R.layout.simple_spinner_item)
             binding.spinner.adapter = adapter
         }
 
@@ -81,7 +78,7 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
     private fun getAllTransaction() {
         viewmodel.getAllTransaction().observe(this){
             if (it.equals(null) || it.isEmpty()){
-                Toast.makeText(this,"kosong", Toast.LENGTH_SHORT)
+
             }else{
                 adapter = AllTransactionAdapter(this,it)
                 binding.rvAllTransaction.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
@@ -91,11 +88,9 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        Toast.makeText(this, tipeKategori[p2], Toast.LENGTH_SHORT).show()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        Toast.makeText(this, "kcao", Toast.LENGTH_SHORT).show()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -150,12 +145,8 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
 
     private fun getTransactionAweek() {
         val calendar = Calendar.getInstance()
-        val endOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
-        calendar.add(Calendar.DAY_OF_WEEK, -endOfWeek)
-        val startDate = simpleDateFormater.format(calendar.time)
-        calendar.add(Calendar.DAY_OF_WEEK, 6)
-        val endDate = simpleDateFormater.format(calendar.time)
-        viewmodel.getAllTransactionAweek(startDate,endDate).observe(this){
+        val currentWeek = calendar.get(Calendar.WEEK_OF_YEAR)
+        viewmodel.getAllTransactionAweek(currentWeek).observe(this){
             if (it.size > 0 || it.isNotEmpty()){
                 binding.rvAllTransaction.visibility = View.VISIBLE
                 adapter = AllTransactionAdapter(this,it)
@@ -163,7 +154,6 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
                 binding.rvAllTransaction.adapter = adapter
             }else{
                 binding.rvAllTransaction.visibility = View.GONE
-                Toast.makeText(this,"Kocak", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -171,11 +161,9 @@ class AllTransactionActivity : AppCompatActivity(), AdapterView.OnItemSelectedLi
 
     private fun getTransactionMonth() {
         val calendar = Calendar.getInstance()
-        calendar.add(Calendar.MONTH, -1)
-        val startDate = simpleDateFormater.format(calendar.time)
-        val endDate = simpleDateFormater.format(Calendar.getInstance().time)
-        viewmodel.getAlTransactionMonth().observe(this){
-            if (it.size > 0 || it.isNotEmpty()){
+        val month = calendar.get(Calendar.MONTH)+1
+        viewmodel.getAlTransactionMonth(month).observe(this){
+            if (it.isNotEmpty()){
                 binding.rvAllTransaction.visibility = View.VISIBLE
                 adapter = AllTransactionAdapter(this,it)
                 binding.rvAllTransaction.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)

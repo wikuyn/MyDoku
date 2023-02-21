@@ -40,7 +40,7 @@ class AllTransactionAdapter(val context: Context, val allTrasaction: List<Transa
             val date = dateFormat.format(allTrasaction[position].date)
 
              */
-            bindingIncome.tvDate.text = allTrasaction[position].dateSql
+            bindingIncome.tvDate.text = allTrasaction[position].dateString
             bindingIncome.root.setOnClickListener {
                 val intent = Intent(context, AddTransactionActivity::class.java)
                 intent.putExtra("DETAIL_DATA",allTrasaction[position])
@@ -57,7 +57,7 @@ class AllTransactionAdapter(val context: Context, val allTrasaction: List<Transa
             val date = dateFormat.format(allTrasaction[position].date)
 
              */
-            bindingSpending.tvDate.text = allTrasaction[position].dateSql
+            bindingSpending.tvDate.text = allTrasaction[position].dateString
             bindingSpending.root.setOnClickListener {
                 val intent = Intent(context, AddTransactionActivity::class.java)
                 intent.putExtra("DETAIL_DATA",allTrasaction[position])

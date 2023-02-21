@@ -14,7 +14,11 @@ data class Transaksi(
     val transactionName: String,
     val userIdTransaction: Int,
     val nominal: Long,
-    val dateSql: String,
+    val date: Date,
+    val dateString: String,
+    val month: Int,
+    val week: Int,
+    val day: Int,
     val type: Int,
     val category: String,
     @PrimaryKey(autoGenerate = false)

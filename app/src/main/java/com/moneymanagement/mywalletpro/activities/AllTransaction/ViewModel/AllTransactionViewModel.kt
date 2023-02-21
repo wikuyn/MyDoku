@@ -28,29 +28,19 @@ class AllTransactionViewModel(application: Application) : AndroidViewModel(appli
     fun getAllTransactionToday(dateToday: String):LiveData<List<Transaksi>>{
         db.userDao().getTransaksiOfUserToday(dateToday).observeForever {
             listTransaction.value = it
-            for (i in it){
-                Log.e("TAG", "getAllTransactionToday: "+i.transactionName)
-            }
         }
         return listTransaction
     }
 
-    fun getAllTransactionAweek(startDate: String, endDate: String):LiveData<List<Transaksi>>{
-        db.userDao().getTransaksiOfUserWeek(startDate, endDate).observeForever {
-            if (it.size > 0){
-                for (i in it){
-                    Log.e("TAG", "dwqdq: "+i.transactionName)
-                }
-            }else{
-                Log.e("TAG", "kosong: ")
-            }
+    fun getAllTransactionAweek(currentWeek: Int):LiveData<List<Transaksi>>{
+        db.userDao().getTransaksiOfUserWeek(currentWeek).observeForever {
             listTransaction.value = it
         }
         return listTransaction
     }
 
-    fun getAlTransactionMonth():LiveData<List<Transaksi>>{
-        db.userDao().getTransaksiOfUserMonth().observeForever {
+    fun getAlTransactionMonth(month: Int):LiveData<List<Transaksi>>{
+        db.userDao().getTransaksiOfUserMonth(month).observeForever {
             listTransaction.value = it
         }
         return listTransaction

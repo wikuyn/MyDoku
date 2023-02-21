@@ -51,15 +51,15 @@ interface UserDao {
     @Query("SELECT *FROM user WHERE userId = :userid")
     fun getTransaksiOfUser(userid: Int): LiveData<UserWithTransaksi>
 
-    @Query("SELECT *FROM transaksi ORDER BY dateSql DESC")
+    @Query("SELECT *FROM transaksi ORDER BY date DESC")
     fun getAllTransaction(): LiveData<List<Transaksi>>
 
-    @Query("SELECT * FROM transaksi WHERE dateSql = :todayDate ORDER BY dateSql DESC")
+    @Query("SELECT *FROM transaksi WHERE dateString = :todayDate ORDER BY date DESC")
     fun getTransaksiOfUserToday(todayDate: String): LiveData<List<Transaksi>>
 
-    @Query("SELECT *FROM transaksi WHERE dateSql >= :startDate AND dateSql <= :endDate")
-    fun getTransaksiOfUserWeek(startDate: String, endDate: String): LiveData<List<Transaksi>>
+    @Query("SELECT *FROM transaksi WHERE week =:currentWeek ORDER BY date DESC")
+    fun getTransaksiOfUserWeek(currentWeek: Int): LiveData<List<Transaksi>>
 
-    @Query("SELECT *FROM transaksi WHERE dateSql = date('now','-1 day')")
-    fun getTransaksiOfUserMonth(): LiveData<List<Transaksi>>
+    @Query("SELECT *FROM transaksi WHERE month =:currentMonth ORDER BY date DESC")
+    fun getTransaksiOfUserMonth(currentMonth: Int): LiveData<List<Transaksi>>
 }

@@ -36,11 +36,11 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
     private var categoryType: Int = 0
     private lateinit var categoryName: String
     private lateinit var transactionName: String
+    private lateinit var dateString: String
 
     private val calendar = Calendar.getInstance()
     private val formatter = SimpleDateFormat("dd-MM-yyyy")
-    private lateinit var date: String
-    private lateinit var realDate: Date
+    private lateinit var date: Date
     private var data: Transaksi? = null
 
     private lateinit var transactionId: String
@@ -58,7 +58,8 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
             categoryIcon = data!!.icon
             categoryType = data!!.type
             textMoney = data!!.nominal
-            date = data!!.dateSql
+            date = data!!.date
+            dateString = data!!.dateString
 
             binding.edtTransactionName.setText(data!!.transactionName)
             val formatRupiah = FormatToRupiah.convertRupiahToDecimal(textMoney)
@@ -66,9 +67,9 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
             binding.edtMoney.setText(formatRupiah)
             binding.tvCategory.text = categoryName
             binding.iconCategory.setImageResource(categoryIcon)
-            binding.tvDate.text = date
+            binding.tvDate.text = formatter.format(date)
         }else{
-            setDefaultCategory()
+            setDefault()
         }
 
         binding.btnBack.setOnClickListener{
@@ -140,7 +141,8 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
     private fun updateData() {
         transactionName = binding.edtTransactionName.text.toString().trim()
         val updateData = Transaksi(categoryIcon,transactionName,SharedPreference.getUserIdLogin(applicationContext)
-            , textMoney, date, categoryType,categoryName, transactionId)
+            , textMoney, date, dateString,calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.WEEK_OF_YEAR)
+            , calendar.get(Calendar.DAY_OF_MONTH), categoryType,categoryName, transactionId)
         updateData.transactionId = data?.transactionId!!
         viewmodel.updateTransaction(updateData)
         finish()
@@ -149,7 +151,8 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
     private fun saveData() {
         transactionName = binding.edtTransactionName.text.toString().trim()
         newTransaksi = Transaksi(categoryIcon,transactionName,SharedPreference.getUserIdLogin(applicationContext)
-            , textMoney, date, categoryType, categoryName,generateTransactionId())
+            , textMoney, date, dateString, calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.WEEK_OF_YEAR)
+            , calendar.get(Calendar.DAY_OF_MONTH), categoryType, categoryName,generateTransactionId())
         viewmodel.insertNewTransaction(newTransaksi)
 
         val userWithTransaksi = TransaksiWithUserRef(transactionId, SharedPreference.getUserIdLogin(applicationContext))
@@ -157,7 +160,7 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
         finish()
     }
 
-    private fun setDefaultCategory() {
+    private fun setDefault() {
         categoryName = "Belanja"
         categoryIcon = R.drawable.ic_shopping
         categoryType = 1
@@ -165,7 +168,9 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
         binding.tvCategory.text = categoryName
         binding.iconCategory.setImageResource(categoryIcon)
 
-        //date = Calendar.getInstance().time
+        date = Calendar.getInstance().time
+        dateString = formatter.format(date)
+        binding.tvDate.text = formatter.format(date)
     }
 
     val getData = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -185,12 +190,12 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayMonth: Int) {
         calendar.set(year, month, dayMonth)
-        realDate = calendar.time
-        setFormatDate(realDate)
+        date = calendar.time
+        setFormatDate(date)
     }
 
     private fun setFormatDate(s: Date) {
-        date = formatter.format(s)
+        dateString = formatter.format(s)
         binding.tvDate.text = formatter.format(s)
     }
 
@@ -199,4 +204,5 @@ class AddTransactionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLi
         transactionId = "TRS-$currentTime"
         return transactionId
     }
+
 }
